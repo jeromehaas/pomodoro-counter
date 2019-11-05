@@ -1,0 +1,612 @@
+/******************************************************************************
+GLOBAL
+******************************************************************************/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    color: #222222;
+    font-family: Inconsolata, sans-serif;
+    font-weight: 100 !important;
+    letter-spacing: 2px;
+}
+
+body {
+    overflow: hidden;
+}
+
+.section{
+    width: 100vw;
+    height:100vh;
+    overflow: hidden;
+
+}
+
+.button {
+    background-color:#222222;
+    border-radius: 5px;
+
+    width: auto;
+    padding: 10px 20px;
+    min-width: 50px;
+
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    font-size: inherit;
+}
+
+.button input{
+    color: rgba(255, 255, 255, 1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+#bg-image {
+    background: linear-gradient(90deg, rgba(21,153,87,1) 0%, rgba(21,87,153,1) 0%, rgba(21,153,87,1) 33%, rgba(255,255,255,1) 66%, rgba(239,59,54,1) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 300vw;
+    height: 100vh;
+    z-index: -2;
+    transition: all 2s ease;
+    overflow: hidden;
+}
+
+/******************************************************************************
+FONT
+******************************************************************************/
+
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('../media/fonts/Inconsolata.ttf');
+    font-style: normal;
+    font-weight: 100;
+}
+
+
+/******************************************************************************
+HAMBURGER
+******************************************************************************/
+
+
+#hamburger {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 99;
+    padding: 0 !important;
+}
+
+
+.hamburger {
+    padding: 15px 15px;
+    display: inline-block;
+    cursor: pointer;
+    transition-property: opacity, filter;
+    transition-duration: 0.15s;
+    transition-timing-function: linear;
+    font: inherit;
+    color: inherit;
+    text-transform: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    overflow: visible;
+}
+
+
+.hamburger:hover {
+    opacity: 0.7;
+}
+
+
+.hamburger.is-active:hover {
+    opacity: 0.7;
+}
+
+
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+    background-color: #fff;
+}
+
+
+.hamburger-box {
+    width: 40px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+
+
+.hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+}
+
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 40px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+}
+
+
+.hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block;
+}
+
+
+.hamburger-inner::before {
+    top: -10px;
+}
+
+
+.hamburger-inner::after {
+    bottom: -10px;
+}
+
+
+.hamburger--spin .hamburger-inner {
+    transition-duration: 0.22s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+
+.hamburger--spin .hamburger-inner::before {
+    transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+}
+
+
+.hamburger--spin .hamburger-inner::after {
+    transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+
+.hamburger--spin.is-active .hamburger-inner {
+    transform: rotate(225deg);
+    background-color: #15965B;
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+
+.hamburger--spin.is-active .hamburger-inner::before {
+    top: 0;
+    opacity: 0;
+    background-color: #15965B;
+    transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+}
+
+
+.hamburger--spin.is-active .hamburger-inner::after {
+    bottom: 0;
+    background-color: #15965B;
+    transform: rotate(-90deg);
+    transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+
+/******************************************************************************
+MENU
+******************************************************************************/
+
+
+#menu-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.9s ease-in-out;
+    opacity: 0;
+    z-index: -5;
+}
+
+
+nav {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999999999999999999;
+}
+
+
+nav ul a {
+    text-decoration: none;
+}
+
+
+nav ul a .navigation-item {
+     transition: all 0.5s ease-in;
+     background: linear-gradient(90deg, #16797B, #148171);
+     color: #ffffff;
+     list-style-type: none;
+     opacity: 0;
+     transition-delay: 0.01s !important;
+     text-align: center;
+     line-height: 1.75;
+     padding: 5px 15px;
+     margin-bottom: 20px;
+     font-size: 18px;
+     box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+ }
+
+
+
+/******************************************************************************
+ADDITIONAL CLASSES FPR THE MENU
+******************************************************************************/
+
+
+.is-expanded {
+    opacity: 1 !important;
+    z-index: 55 !important;
+}
+
+
+.is-visible {
+    top: 0 !important;
+    z-index: 999999999999999999999;
+    opacity: 1 !important;
+}
+
+
+.is-visible:nth-child(1) {transition-delay: 0.3s !important;}
+.is-visible:nth-child(2) {transition-delay: 0.4s !important;}
+.is-visible:nth-child(3) {transition-delay: 0.5s !important;}
+
+
+.is-inviewport{
+    top: 50%;
+}
+
+
+/******************************************************************************
+FLIP CARD
+******************************************************************************/
+
+
+#card {
+    position: relative;
+}
+
+
+#card .section-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+}
+
+
+#card .section-wrapper .flip-card {
+    width: 300px;
+    height: 300px;
+    transition: all 1s ease;
+    position: relative;
+}
+
+
+#card .section-wrapper .flip-card .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    backface-visibility: hidden;
+    transition: all 1s ease;
+}
+
+
+#card .section-wrapper .flip-card .card#front-side {
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 99;
+
+}
+
+
+#card .section-wrapper .flip-card .card#back-side {
+    background-color: rgba(255, 255, 255, 0);
+    transform: rotateY(180deg);
+}
+
+
+/******************************************************************************
+COUNTER
+******************************************************************************/
+
+
+#counter{
+    z-index: 9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#circleCounter {
+    width: 165px;
+    height: 165px;
+    background-color: #222222;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#shadowRing {
+    height: 165px;
+    width: 165px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+}
+
+
+@media screen and (max-width: 600px) {
+    #counter,  #circleCounter, #shadowRing, form {
+        top: -20% !important;
+    }
+}
+
+/******************************************************************************
+INFORMATION BOX
+******************************************************************************/
+
+
+#information-box {
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: white;
+    transition: all 1s ease;
+}
+
+
+#information-box .block {
+    width: auto;
+    border-right: 1px solid #cccccc;
+    padding: 5px 20px;
+    margin: 20px 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#information-box .block:last-child {
+    border-right: none;
+}
+
+#information-box .block p {
+    height: 30px;
+}
+
+#information-box .block .information {
+    color: #999;
+}
+
+@media screen and (max-width: 600px) {
+
+    #information-box {
+        flex-direction: column;
+        bottom: -600px;
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/******************************************************************************
+NEW TIMER BUTTON
+******************************************************************************/
+
+
+#new-timer-button {
+    position: absolute;
+    top: -50px;
+    left: 20px;
+    transition: all 1s ease;
+}
+
+
+#new-timer-button button{
+    padding: 10px;
+    border: none;
+}
+
+/******************************************************************************
+FORM
+******************************************************************************/
+
+
+form {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 35px;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+
+form .form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+
+form .form-row p{
+    padding-right: 20px;
+}
+
+form .form-row input{
+    border: none;
+    outline: none;
+    width: 40px;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+form .form-row input::-webkit-outer-spin-button,
+form .form-row input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+
+form .form-row span {
+    content: " ";
+    display: block;
+    height: 1px;
+    width: 27%;
+    background:#333;
+    position: absolute;
+    bottom: 18;
+    left: 73%;
+}
+
+
+form .form-row span::after {
+    content: " ";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, #17757D 0%, #177082);
+}
+
+
+form .button{
+    width: auto;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+/******************************************************************************
+PRIVACY SITE
+******************************************************************************/
+
+#privacy{
+    background: linear-gradient(90deg, rgba(21,153,87,1), rgba(21,87,153,1));
+    width: 100vw;
+    height: 100vh;
+}
+
+#privacy-wrapper{
+    background-color: white;
+    overflow-y: scroll;
+    padding: 25px;
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    bottom: 75px;
+    right: 75px;
+    line-height: 1.25;
+}
+
+#privacy-wrapper::after{
+    content: " ";
+    width: 100%;
+    height: 50%;
+    background-color: red;
+}
+
+
+#privacy .data-container {
+    margin-bottom: 50px;
+
+}
+
+#privacy .data-container h4 {
+    font-size: 18px;
+    font-weight: 550 !important;
+}
+
+/******************************************************************************
+IMPRESSUM SITE
+******************************************************************************/
+
+#impressum{
+    background: linear-gradient(90deg, rgba(21,153,87,1), rgba(21,87,153,1));
+    width: 100vw;
+    height: 100vh;
+}
+
+#impressum-wrapper{
+    background-color: white;
+    overflow-y: scroll;
+    padding: 25px;
+    position: absolute;
+    top: 75px;
+    left: 75px;
+    bottom: 75px;
+    right: 75px;
+    line-height: 1.25;
+}
+
+#impressum-wrapper::after{
+    content: " ";
+    width: 100%;
+    height: 50%;
+}
+
+
+#impressum .data-container {
+    margin-bottom: 50px;
+    text-align: center;
+
+
+}
+
+#impressum .data-container h4 {
+    font-size: 18px;
+    font-weight: 550 !important;
+}
+
+#impressum .data-container a {
+    text-decoration: none;
+}
+
+
+
+
+
+

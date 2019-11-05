@@ -1,0 +1,145 @@
+<html>
+<head>
+    <title>My Pomodoro Timer</title>
+    <meta name="author" content="Jerome Haas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.typekit.net/iie3ogm.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="media/favicon/favicon-32x32.png">
+
+    <!-- GOOGLE ANALYTICS TAG START -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116209845-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-116209845-5');
+    </script>
+    <!-- GOOGLE ANALYTICS TAG END -->
+</head>
+<body>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+FLIP CARD CONTAINING THE FORM AND THE COUNTER
+----------------------------------------------------------------------------------------------------------------------->
+
+
+<div id="card" class="section">
+    <div class="section-wrapper">
+        <div class="flip-card">
+            <div class="card" id="front-side">
+                <form action="javascript:void(0);">
+                    <div class="form-row">
+                        <p>Intervals</p>
+                        <input type="number" name="intervals" id="intervals" value="4">
+                        <span> </span>
+                    </div>
+                    <div class="form-row">
+                        <p>Studytime</p>
+                        <input type="number" name="studytime" id="studytime" value="25">
+                        <span> </span>
+                    </div>
+                    <div class="form-row">
+                        <p>Breaktime</p>
+                        <input type="number" name="breaktime" id="breaktime" value="5">
+                        <span> </span>
+                    </div>
+                    <button id="form-submit-button" class="button">Go!</button>
+                </form>
+            </div>
+            <div class="card" id="back-side">
+                <div id="circleCounter"></div>
+                <div id="shadowRing"></div>
+                <canvas height="200" width="200" id="counter"/></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+BACKGROUND WITH THE GRADIENT
+----------------------------------------------------------------------------------------------------------------------->
+
+
+<div id="bg-image"></div>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+INFORMATION BLOCK
+----------------------------------------------------------------------------------------------------------------------->
+
+
+<div id="information-box">
+    <div class="block">
+        <p>INTERVALS</p>
+        <p id="intervals-information" class="information"></p>
+    </div>
+    <div class="block">
+        <p>STUDYTIME</p>
+        <p id="studytime-information" class="information"></p>
+    </div>
+    <div class="block">
+        <p>BREAKTIME</p>
+        <p id="breaktime-information" class="information"></p>
+    </div>
+    <div class="block">
+        <p>PROGRESS</p>
+        <p id="progress-information" class="information"></p>
+    </div>
+</div>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+NEW TIMER BUTTON
+----------------------------------------------------------------------------------------------------------------------->
+
+<div id="new-timer-button">
+    <button class="button">SET A NEW TIMER</button>
+</div>
+
+<audio id="myAudio">
+    <source src="media/audio/alert-ring.mp3">
+</audio>
+
+<button id="hamburger" class="hamburger hamburger--spin" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+MENU
+----------------------------------------------------------------------------------------------------------------------->
+
+<nav id="navigation">
+    <ul>
+        <a href="index.html"><li class="navigation-item">START</li></a>
+        <a href="privacy.html"><li class="navigation-item">PRIVACY</li></a>
+        <a href="impressum.html"><li class="navigation-item">IMPRESSUM</li></a>
+    </ul>
+</nav>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+MENU BACKGROUND
+----------------------------------------------------------------------------------------------------------------------->
+
+
+<div id="menu-background"></div>
+
+
+<!----------------------------------------------------------------------------------------------------------------------
+SCRIPTS
+----------------------------------------------------------------------------------------------------------------------->
+
+
+<script src="functions/main.js" type="application/javascript"></script>
+
+
+</body>
+</html>
