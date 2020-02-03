@@ -54,6 +54,7 @@ function studyTimeCounter(intervals, studyTime, breakTime) {
     var totalGoal = (zahlerTotal) * (studyTimeInSeconds + breakTimeInSeconds) + studyTimeInSeconds + 1;
     var secondCounter = 0;
     var newTimerButton = document.getElementById('new-timer-button');
+    var newTimerButtonMobile = document.getElementById('new-timer-button-mobile');
     document.getElementById("intervals-information").innerText = (zahler + " / " + intervals);
     document.getElementById("studytime-information").innerText = (studyTimeInMinutes + " MINS");
     document.getElementById("breaktime-information").innerText = (breaktimeInMinutes + " MINS");
@@ -67,6 +68,17 @@ function studyTimeCounter(intervals, studyTime, breakTime) {
             clearInterval(myInterval);
             setTimeout(function () {
                 document.getElementById('new-timer-button').style.top = "-50px";
+                document.getElementById('new-timer-button-mobile').style.top = "-50px";
+                document.getElementById('information-box').style.bottom = "-600px";
+                document.getElementById('front-side').style.transform = "rotateY(0deg)";
+                document.getElementById('back-side').style.transform = "rotateY(180deg)";
+            }, 500);
+        });
+        newTimerButtonMobile.addEventListener('click', function () {
+            clearInterval(myInterval);
+            setTimeout(function () {
+                document.getElementById('new-timer-button').style.top = "-50px";
+                document.getElementById('new-timer-button-mobile').style.top = "-50px";
                 document.getElementById('information-box').style.bottom = "-600px";
                 document.getElementById('front-side').style.transform = "rotateY(0deg)";
                 document.getElementById('back-side').style.transform = "rotateY(180deg)";
@@ -206,6 +218,7 @@ button.addEventListener('click', function () {
         document.getElementById('back-side').style.transform = "rotateY(0deg)";
         document.getElementById('information-box').style.bottom = "0";
         document.getElementById('new-timer-button').style.top = "20px";
+        document.getElementById('new-timer-button-mobile').style.top = "20px";
         //AFTER 1 SECOND TAKE THE VALUES FROM THE FORM AND EXECUTE THE STUDYTIMER-FUNCTION
         setTimeout(function () {
             var userInput = getUserInput();

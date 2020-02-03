@@ -312,6 +312,8 @@ FLIP CARD
     position: absolute;
     top: 0;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
     transition: all 1s ease;
 }
 
@@ -370,7 +372,7 @@ COUNTER
 
 @media screen and (max-width: 600px) {
     #counter,  #circleCounter, #shadowRing, form {
-        top: -20% !important;
+        top: 10% !important;
     }
 }
 
@@ -397,7 +399,7 @@ INFORMATION BOX
     width: auto;
     border-right: 1px solid #cccccc;
     padding: 5px 20px;
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -426,6 +428,12 @@ INFORMATION BOX
         flex-wrap: wrap;
     }
 
+    #information-box .block {
+
+        margin: 10px 0px 0px 0px;
+
+    }
+
 }
 
 
@@ -441,10 +449,40 @@ NEW TIMER BUTTON
     transition: all 1s ease;
 }
 
-
 #new-timer-button button{
     padding: 10px;
     border: none;
+}
+
+#new-timer-button-mobile {
+    position: absolute;
+    top: -50px;
+    left: 20px;
+    transition: all 1s ease;
+    display: none;
+}
+
+#new-timer-button-mobile button{
+    padding: 10px;
+    border: none;
+    background-size: contain;
+    background-color: #222222;
+}
+
+#new-timer-button-mobile button img{
+    width: 30px;
+}
+
+@media screen and (max-width: 600px) {
+
+    #new-timer-button {
+        display: none;
+    }
+
+    #new-timer-button-mobile {
+        display: block !important;
+    }
+
 }
 
 /******************************************************************************
@@ -481,9 +519,10 @@ form .form-row p{
 form .form-row input{
     border: none;
     outline: none;
-    width: 40px;
+    width: 45px;
     font-size: 16px;
     text-align: center;
+    padding: 0 5px;
 }
 
 
